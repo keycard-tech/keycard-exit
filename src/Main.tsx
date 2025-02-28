@@ -33,7 +33,7 @@ enum Step {
 const Main = () => {
   const PIN_MAX_RETRY = 3;
   const WALLET_DERIVATION_PATH = "m/84'/0'/0'/0/0";
-  const LOGIN_ENDPOINT = "https://exit.logos.co/keycard/auth";
+  const LOGIN_ENDPOINT = "https://exit-test-567058b69f45.herokuapp.com/api/keycard/auth";
 
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [step, setStep] = useState(Step.Discovery);
@@ -206,9 +206,9 @@ const Main = () => {
         if (respJson['error']) {
           setErrorMessage(respJson['error']);
           setStep(Step.LoginError);
+        } else {
+          setStep(Step.LoginSuccess)
         }
-
-        setStep(Step.LoginSuccess)
       } catch (e) {
         setErrorMessage("Login failed. Please try again.");
         setStep(Step.LoginError);
